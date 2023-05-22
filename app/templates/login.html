@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>authentication system</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar bg-dark navbar-dark p-2">
+<div class="container-fluid">
+<span class="navbar-brand mb-0 h1">MadGod</span>
+</div>
+</nav>
+</nav>
+<h1 class="text-center text-success">سلاممم جوجو</h1>
+<div class="container-fluid">
+{% if request.user.is_authenticated %}
+<p class="text-success">You are Logged In</p>
+<p class="text-success">Username : {{ request.user.username 
+}}</p>
+{% else %}
+<p class="text-danger">User is not logged in </p>
+{% endif %}
+<form action="{% url 'login_user' %}" method="post" class="row g3">
+{% csrf_token%}
+<div class="col-md-6">
+<label for="inputEmail4" class="form-label">username</label>
+<input name="username" type="" class="form-control" id="">
+</div>
+<div class="col-md-6">
+<label for="inputPassword4" class="form-label">Password</label>
+<input type="password" name="password" class="form-control" 
+id="inputPassword4">
+</div>
+<div class="col-12">
+<button type="submit" class="btn btn-primary">LOG 
+IN</button>
+</div>
+</form>
+<div class="form-group">
+{% for message in messages %}
+<div class="alert alert-danger" role="alert">
+{{message}}
+</div>
+{% endfor %}
+</div>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
